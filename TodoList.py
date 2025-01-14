@@ -33,22 +33,24 @@ def delete_task(tasks):
             print("Numéro invalide.")
     except ValueError:
         print("Veuillez entrer un numéro valide.")
-
 def update_task(tasks):
     display_tasks(tasks)
     try:
         task_num = int(input("Entrez le numéro de la tâche à mettre à jour : "))
         if 1 <= task_num <= len(tasks):
-            new_task = input("Entrez la nouvelle tâche : ")
-            if new_task:
-                tasks[task_num - 1] = new_task
-                print("Tâche mise à jour avec succès !")
-            else:
-                print("La nouvelle tâche ne peut pas être vide.")
+            while True:
+                new_task = input("Entrez la nouvelle tâche : ")
+                if new_task:
+                    tasks[task_num - 1] = new_task
+                    print("Tâche mise à jour avec succès !")
+                    break
+                else:
+                    print("La nouvelle tâche ne peut pas être vide. Veuillez réessayer.")
         else:
             print("Numéro invalide.")
     except ValueError:
         print("Veuillez entrer un numéro valide.")
+
 
 def main():
     tasks = []
