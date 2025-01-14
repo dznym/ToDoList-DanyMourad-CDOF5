@@ -3,7 +3,8 @@ def display_menu():
     print("1. Afficher les tâches")
     print("2. Ajouter une tâche")
     print("3. Supprimer une tâche")
-    print("4. Quitter")
+    print("4. Mettre à jour une tâche")
+    print("5. Quitter")
 
 def display_tasks(tasks):
     if not tasks:
@@ -33,11 +34,27 @@ def delete_task(tasks):
     except ValueError:
         print("Veuillez entrer un numéro valide.")
 
+def update_task(tasks):
+    display_tasks(tasks)
+    try:
+        task_num = int(input("Entrez le numéro de la tâche à mettre à jour : "))
+        if 1 <= task_num <= len(tasks):
+            new_task = input("Entrez la nouvelle tâche : ")
+            if new_task:
+                tasks[task_num - 1] = new_task
+                print("Tâche mise à jour avec succès !")
+            else:
+                print("La nouvelle tâche ne peut pas être vide.")
+        else:
+            print("Numéro invalide.")
+    except ValueError:
+        print("Veuillez entrer un numéro valide.")
+
 def main():
     tasks = []
     while True:
         display_menu()
-        choice = input("Choisissez une option (1-4) : ")
+        choice = input("Choisissez une option (1-5) : ")
         if choice == "1":
             display_tasks(tasks)
         elif choice == "2":
@@ -45,6 +62,8 @@ def main():
         elif choice == "3":
             delete_task(tasks)
         elif choice == "4":
+            update_task(tasks)
+        elif choice == "5":
             print("Au revoir !")
             break
         else:
